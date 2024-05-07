@@ -74,6 +74,14 @@ if response.status_code == 200:
 
     # Sprawdzenie, czy dane już istnieją w bazie
     if not check_if_data_exists(connection, download_date, code, bid_value):
+        # Wyświetlenie danych pobranych z API przed dodaniem ich do bazy danych
+        print("Dane pobrane z API:")
+        print(f"Data pobrania: {download_date}")
+        print(f"Data kursu: {waluty['rates'][0]['effectiveDate']}")
+        print(f"Nazwa waluty: {waluty['currency']}")
+        print(f"Kod waluty: {code}")
+        print(f"Kurs zakupu: {bid_value}")
+        print(f"Kurs sprzedaży: {ask_value}")
         # Jeśli dane nie istnieją, dodaj je do bazy danych
         add_data_to_database(connection, download_date, waluty['rates'][0]['effectiveDate'], waluty['currency'], code, bid_value, ask_value)
 
